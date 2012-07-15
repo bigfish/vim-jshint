@@ -16,4 +16,4 @@ A vim compiler plugin to run [node-jshint](https://github.com/jshint/node-jshint
 After you open a .js file, and save it, it will run nodelint on the file and report errors in the location window.
 It will jump to the location of the first error.
 
-4. See the jshint site for more info on configuration
+See the [jshint website](http://jshint.com) for more info on configuration options.
