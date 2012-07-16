@@ -21,7 +21,7 @@ endif
 "jshint:  npm install -g jshint
 if executable('jshint')
   
-  execute 'setlocal efm=%f:\ line\ %l\,\ col\ %c\,\ %m'
+  execute 'setlocal efm=%f:\ line\ %l\\,\ col\ %c\\,\ %m'
 
   execute 'setlocal makeprg=jshint\ %' 
 
