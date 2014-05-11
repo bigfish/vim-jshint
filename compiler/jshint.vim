@@ -10,8 +10,17 @@ if exists(":CompilerSet") != 2
 endif
 
 "allow overriding lint on save (default is true)
-if !exists('g:jshint_onwrite')
-    let g:jshint_onwrite = 1
+if exists('g:jshint_onwrite')
+    let b:jshint_onwrite = g:jshint_onwrite
+else
+    let b:jshint_onwrite = 1
+endif
+
+"allow overriding default jump to first error (default is false)
+if exists('g:jshint_goto_error')
+    let b:jshint_goto_error = g:jshint_goto_error
+else
+    let b:jshint_goto_error = 0
 endif
 
 if exists(':JSHint') != 2
@@ -27,7 +36,7 @@ if executable('jshint')
 
 endif
 
-if g:jshint_onwrite
+if b:jshint_onwrite
     augroup javascript
         au!
         au BufWritePost *.js call JSHint(1)
@@ -48,12 +57,12 @@ function! JSHint(saved)
         setlocal sp=>%s\ 2>&1
     endif
 
-    if g:jshint_goto_error
+    if g:jshint_goto_error || b:jshint_goto_error
 	silent lmake
     else
 	silent lmake!
     endif
-	
+
     "open local window with errors
     :lwindow
 	
