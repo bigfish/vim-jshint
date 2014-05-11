@@ -30,7 +30,7 @@ endif
 if g:jshint_onwrite
     augroup javascript
         au!
-        au BufWritePost * call JSHint(1)
+        au BufWritePost *.js call JSHint(1)
     augroup end
 endif
 
@@ -48,9 +48,13 @@ function! JSHint(saved)
         setlocal sp=>%s\ 2>&1
     endif
 
+    if g:jshint_goto_error
 	silent lmake
+    else
+	silent lmake!
+    endif
 	
-	"open local window with errors
-	:lwindow
+    "open local window with errors
+    :lwindow
 	
 endfunction
